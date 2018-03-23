@@ -35,6 +35,7 @@ if($_POST){
 		//echo "$query";
 	if($mysqli->query($query)){
 		//echo "succes";
+		header("Location: parent_detail.php");
 	}else {
 		//echo "false";
 		# code...

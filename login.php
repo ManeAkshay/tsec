@@ -47,6 +47,10 @@ if(isset($_POST)){
 	 			require_once 'mail.php';
 	 			$query = "INSERT INTO candidate_details (`user_id`) VALUES (".$id.")";
 	 			$mysqli->query($query);
+	 			$query = "INSERT INTO candidate_parents (`user_id`) VALUES (".$id.")";
+	 			$mysqli->query($query);
+	 			$query = "INSERT INTO candidate_address (`user_id`) VALUES (".$id.")";
+	 			$mysqli->query($query);
 	 		}
 	 	}
 

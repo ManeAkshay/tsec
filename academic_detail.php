@@ -3,21 +3,18 @@
 require_once 'db_connect.php';
 
 if(!isset($_SESSION)){
-	if(!isset($_SESSION['dte_no'])){
-		header("Location: logout.php");
-	}
+  if(!isset($_SESSION['dte_no'])){
+    header("Location: logout.php");
+  }
 }
 
 
 $dte_no = $_SESSION['dte_no'];
 
-require_once 'head.php';
-require_once 'header1.php';
-
 $school = "";
 $university = "";
 $seatno = "";
-$avgmarks = "";
+$aggregate = "";
 $tmarks = "";
 $percentage = "";
 
@@ -25,14 +22,15 @@ $percentage = "";
 
 
 
+
+require_once 'head.php';
+require_once 'header1.php';
 ?>
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-    <li class="breadcrumb-item"><a href="candidate_detail.php">Candidate Details</a></li>
-    <li class="breadcrumb-item"><a href="parent_detail.php">Parents Details</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Academic Details</li>
+    <li class="breadcrumb-item"><a href="candidate_detail.php">Candidate Details</a>-><a href="parent_detail.php">Parents Details</a>->Academic Details</li>  
   </ol>
 </nav>
 
@@ -65,43 +63,43 @@ $percentage = "";
 </div>
 
     </div>
-    	<label class="col-sm-2 col-form-label">Year of Passing</label>
-    	<div class="col-sm-3">
-    		 <select id="inputState"  class="form-control">
-		        <option selected>Select</option>
-		        <option>1990</option>
-		        <option>1991</option>
-		        <option>1992</option>
-		        <option>1993</option>
-		        <option>1994</option>
-		        <option>1995</option>
-		        <option>1996</option>
-		        <option>1997</option>
-		        <option>1998</option>
-		        <option>1999</option>
-		        <option>2000</option>
-		        <option>2001</option>
-		        <option>2002</option>
-		        <option>2003</option>
-		        <option>2004</option>
-		        <option>2005</option>
-		        <option>2006</option>
-		        <option>2007</option>
-		        <option>2008</option>
-		        <option>2009</option>
-		        <option>2010</option>
-		        <option>2011</option>
-		        <option>2012</option>
-		        <option>2013</option>
-		        <option>2014</option>
-		        <option>2015</option>
-		        <option>2016</option>
-		        <option>2017</option>
-		        <option>2018</option>
-		      </select>
-		    		
-    	</div>
-    	
+      <label class="col-sm-2 col-form-label">Year of Passing</label>
+      <div class="col-sm-3">
+         <select id="inputState"  class="form-control">
+            <option selected>Select</option>
+            <option>1990</option>
+            <option>1991</option>
+            <option>1992</option>
+            <option>1993</option>
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>1997</option>
+            <option>1998</option>
+            <option>1999</option>
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+          </select>
+            
+      </div>
+      
     </div>
 
 
@@ -109,7 +107,7 @@ $percentage = "";
 <div class="form-group row">
     <label for="staticEmail" class="col-sm-2 col-form-label">Average Marks</label>
     <div class="col-sm-3">
-      <input type="number"  class="form-control" id="staticEmail" placeholder="Avg Marks" name="avgmarks" value=<?php echo'"'.$avgmarks.'"'; ?>>
+      <input type="number"  class="form-control" id="staticEmail" placeholder="Avg Marks" name="aggregate" value=<?php echo'"'.$aggregate.'"'; ?>>
   </div>
 </div>
 
@@ -131,5 +129,8 @@ $percentage = "";
 
 
 <div class="row">
-	<div class="col-md-12">
-		<a class="btn btn-primary" href=".php" role="button">Submit</a>
+  <div class="col-md-12">
+    <a href="address_detail.php" class="btn btn-outline-primary my-2 my-sm-0">Previous</a>
+      <input type="submit" name="submit" class="btn btn-outline-success my-2 my-sm-0" value="Save and Next">
+  </div>
+</div>
