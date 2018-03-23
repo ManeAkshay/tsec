@@ -2,6 +2,9 @@
 
 require_once 'db_connect.php';
 
+if(isset($_SESSION['form_no']) && isset($_SESSION['user_id'])){
+	header("Location: index.php");
+}
 		//var_dump($_SESSION);
 
 if(isset($_POST)){
@@ -10,10 +13,10 @@ if(isset($_POST)){
 		$password = $_POST['password'];
 		$query = "SELECT * FROM users WHERE form_no = '".$form_no."' and password = '".$password."'";
 		$result = $mysqli->query($query);
-		//echo $query;
 		if($result->num_rows > 0){
 			$row = $result->fetch_assoc();
 			$_SESSION['form_no'] = $form_no;
+			$_SESSION['dte_no'] = $row['dte_no'];
 			$_SESSION['user_id'] = $row['id'];
 	 		header("Location: index.php");
 		}else{
@@ -22,6 +25,7 @@ if(isset($_POST)){
 	}else if(isset($_POST['register_submit'])){
 		$email = $_POST['email'];
 		$query = "SELECT * FROM users WHERE email = '".$email."'";
+		//echo $query;
 		$result = $mysqli->query($query);
 		if($result->num_rows > 0){
 			echo '<div class="alert alert-warning">
@@ -35,8 +39,14 @@ if(isset($_POST)){
 
 	 		$query = "INSERT INTO users (`form_no`,`dte_no`,`email`,`password`,`access_token`) VALUES ('".$form_no."','".$dte_no."','".$email."','".$password."','".$access_token."')";
 	 		//echo $query;
+	 		$id = '';
 	 		if($mysqli->query($query)){
+	 			$id = $mysqli->insert_id;
+	 			$subject = 'Registration Successful';
+	 			$body = 'Thank You for Registration <br> Your Password - '.$password;
 	 			require_once 'mail.php';
+	 			$query = "INSERT INTO candidate_details (`user_id`) VALUES (".$id.")";
+	 			$mysqli->query($query);
 	 		}
 	 	}
 
